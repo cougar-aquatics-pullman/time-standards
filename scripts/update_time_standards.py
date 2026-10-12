@@ -518,7 +518,7 @@ a.standard-card:hover {{
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.3;
 }}
 
@@ -528,7 +528,7 @@ a.standard-card:hover {{
 
   color: var(--crimson);
 
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.2;
 
   font-weight: 800;
@@ -551,7 +551,7 @@ a.standard-card:hover {{
 
   color: var(--muted);
 
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.2;
 
   font-weight: 800;
