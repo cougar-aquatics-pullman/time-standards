@@ -11,7 +11,7 @@ SOURCE_URL = (
     "times/links-to-time-standards"
 )
 
-OUTPUT_FILE = Path("time-standards/index.html")
+OUTPUT_FILE = Path("index.html")
 
 
 # ---------------------------------------------------------
@@ -245,47 +245,43 @@ def main():
     # -----------------------------------------------------
     # HIGH SCHOOL STANDARDS
     # -----------------------------------------------------
+high_school_heading = find_heading(
+    soup,
+    "High School State Time Standards"
+)
 
-    high_school_heading = find_heading(
-        soup,
-        "High School State Time Standards"
-    )
+high_school_url = None
+high_school_title = (
+    "2026–2027 WASHINGTON STATE TIME STANDARDS"
+)
 
-    high_school_url = None
-    high_school_title = (
-        "WASHINGTON HIGH SCHOOL STATE TIME STANDARDS"
-    )
+if high_school_heading:
 
-    if high_school_heading:
+    node = high_school_heading.find_next()
 
-        node = high_school_heading.find_next()
+    while node:
 
-        while node:
+        if (
+            node.name in ["h1", "h2", "h3", "h4"]
+            and node is not high_school_heading
+        ):
+            break
 
-            if (
-                node.name in ["h1", "h2", "h3", "h4"]
-                and node is not high_school_heading
-            ):
-                break
+        if node.name == "a" and node.get("href"):
 
-            if node.name == "a" and node.get("href"):
+            text = clean(
+                node.get_text(" ", strip=True)
+            )
 
-                text = clean(
-                    node.get_text(" ", strip=True)
-                )
-
-                if text:
-                    high_school_title = text
-
+            # Ignore empty/meaningless links
+            if len(text) > 10:
+                high_school_title = text
                 high_school_url = absolute(
                     node["href"]
                 )
-
-                # Use the first meaningful linked standard
                 break
 
-            node = node.find_next()
-
+        node = node.find_next()
 
     # -----------------------------------------------------
     # BUILD CARDS
