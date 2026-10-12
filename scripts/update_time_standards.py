@@ -504,7 +504,7 @@ a.standard-card:hover {{
 
   color: var(--ink);
 
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.25;
 
   font-weight: 800;
